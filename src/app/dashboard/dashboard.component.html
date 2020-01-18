@@ -1,0 +1,37 @@
+<div class="jumbotron">
+  <h3>Recently Added Candidates</h3>
+  <table class="table table-striped">
+        <thead>
+          <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Surname</th>
+                  <th scope="col">Faculty</th>
+                  <th scope="col">Department</th>
+                  <th scope="col">Level</th>
+                  <th scope="col">Date Added</th>
+                  <th scope="col center">Update</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let candidate of showCanidate ; let i = index">
+            <th scope="row">{{ i + 1}}</th>
+            <td>{{candidate.surname}}</td>
+            <td>{{candidate.fac}}</td>
+            <td>{{candidate.dep}}</td>
+            <td>{{candidate.lev}}</td>
+            <td>{{candidate.date | date | uppercase }}</td>
+            <td class="text-center edit-block">
+                <span class="edit" [routerLink]="['/edit-candidate/', candidate._id]">
+                    <button type="button" class="btn btn-success btn-sm">Edit</button>
+                  </span>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<router-outlet></router-outlet>
+
+

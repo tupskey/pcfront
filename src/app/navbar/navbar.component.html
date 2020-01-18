@@ -1,0 +1,33 @@
+<div class="row rock" *ngIf="auth.isLoggedIn()">
+    <div class="col-md-2">
+            <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['dashboard']">A & PC</a>
+                    </li>
+           </ul>
+    </div>
+        <div  class="col-md-8">
+                <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                          <a class="nav-link" [routerLink]="['/addCandidate']" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active">Add Candidate</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" [routerLink]="['/candidate-list']" routerLinkActive="active">View Candidates</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Notifications</a>
+                        </li>
+                 </ul>
+
+        </div>
+        <div class="col-md-2">
+                <div class="nav justify-content-center">
+                  <button class="btn btn-danger" (click)="logOut()">Logout</button>
+              </div>
+
+        </div>
+</div>
+
+
+
+

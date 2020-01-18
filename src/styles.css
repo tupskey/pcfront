@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+/* html{
+    color: royalblue;
+    background: url('/assets/back.jpg') no-repeat;
+    background-size: cover;
+} */
+
+/* :host(){
+  display: block;
+ background: url('/assets/back.jpg') no-repeat;
+} */
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+body{
+  margin: 0;
+  padding: 0;
+  background-color: navy;
+}
+

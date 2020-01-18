@@ -1,0 +1,172 @@
+
+<div class="cand">
+    <h2>Add Candidate</h2>
+    <form [formGroup]="AddCandidate" (ngSubmit)="onSubmit()" novalidate>
+        <div class="row">
+                    <div class="form-group col-md-4 offset-2">
+                        <input type="text" class="form-control"   formControlName="surname" placeholder="surname"
+                        [ngClass]="{'is-invalid':(AddCandidate.get('surname').touched || AddCandidate.get('surname').dirty) && !AddCandidate.get('surname').valid}">
+                        <span class="invalid-feedback">
+                          <span *ngIf="AddCandidate.get('surname').errors?.required">
+                            Please enter the candidate's  surname
+                          </span>
+                        </span>
+                      </div>
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control"   formControlName="other" placeholder="other"
+                        [ngClass]="{'is-invalid':(AddCandidate.get('other').touched || AddCandidate.get('other').dirty) && !AddCandidate.get('other').valid}">
+                        <span class="invalid-feedback">
+                          <span *ngIf="AddCandidate.get('other').errors?.required">
+                            Please enter the candidate's other name
+                          </span>
+                        </span>
+             </div>
+
+        </div>
+        <div class="row">
+                <div class="form-group col-md-4 offset-2">
+                        <input type="email" class="form-control"  formControlName="email" placeholder="email"
+                        [ngClass]="{'is-invalid':(AddCandidate.get('email').touched || AddCandidate.get('email').dirty) && !AddCandidate.get('email').valid}">
+                        <span class="invalid-feedback">
+                          <span *ngIf="AddCandidate.get('email').errors?.required">
+                            Please enter the candidate's email address
+                          </span>
+                        </span>
+                </div>
+                <div class="form-group col-md-4">
+                        <input type="number" class="form-control" formControlName="number" placeholder="Phone no.."
+                        [ngClass]="{'is-invalid':(AddCandidate.get('number').touched || AddCandidate.get('number').dirty) && !AddCandidate.get('number').valid}">
+                        <span class="invalid-feedback">
+                          <span *ngIf="AddCandidate.get('number').errors?.required">
+                            Please enter the candidate's Phone number
+                          </span>
+                        </span>
+                 </div>
+        </div>
+        <div class="row">
+                <div class="form-group col-md-4 offset-2">
+                        <select class="custom-select" (change)="changeFaculty($event.target.value)" [ngClass]="{'is-invalid':(AddCandidate.get('fac').touched || AddCandidate.get('fac').dirty) && !AddCandidate.get('fac').valid}" formControlName="fac" placeholder="Faculty">
+                            <option value=""disabled>Choose Faculty..</option>
+                            <option *ngFor="let faculty of Faculty"  placeholder="Select a Faculty"
+
+                            >{{faculty}}</option>
+                        </select>
+                          <span class="invalid-feedback">
+                            <span *ngIf="AddCandidate.get('fac').errors?.required">
+                              Please enter the candidate's Faculty
+                            </span>
+                          </span>
+                </div>
+        </div>
+        <div class="row">
+                <div class="form-group col-md-4 offset-2">
+                        <select class="custom-select" [ngClass]="{'is-invalid':(AddCandidate.get('dep').touched || AddCandidate.get('dep').dirty) && !AddCandidate.get('dep').valid}"(change)="changeDepartment($event.target.value)" formControlName="dep">
+                            <option value="" disabled>Choose Department...</option>
+                            <option *ngFor="let department of Department" value="{{department}}">{{department}}</option>
+                        </select>
+                        <span class="invalid-feedback">
+                            <span *ngIf="AddCandidate.get('dep').errors?.required">
+                              Please enter the candidate's Department
+                            </span>
+                          </span>
+                 </div>
+        </div>
+
+
+        <div class="row">
+                <div class="form-group col-md-4 offset-2">
+                        <select class="custom-select" [ngClass]="{'is-invalid': (AddCandidate.get('lev').touched || AddCandidate.get('lev').dirty )  && !AddCandidate.get('lev').valid}" (change)="changeLevel($event.target.value)" formControlName="lev">
+                            <option value="" disabled>Choose Level...</option>
+                            <option *ngFor="let level of Level" value="{{level}}">{{level}}</option>
+                        </select>
+                        <span class="invalid-feedback">
+                            <span *ngIf="AddCandidate.get('lev').errors?.required">
+                              Please enter the candidate's Level
+                            </span>
+                          </span>
+                 </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4 offset-2">
+                <input type="date" class="form-control input-sm"  name="date" placeholder="Required" formControlName="date"
+                [ngClass]="{'is-invalid':(AddCandidate.get('date').touched || AddCandidate.get('date').dirty) && !AddCandidate.get('date').valid}">
+                <span class="invalid-feedback">
+                    <span *ngIf="AddCandidate.get('date').errors?.required">
+                      Please enter the date
+                    </span>
+                  </span>
+             </div>
+    </div>
+        <div>
+            <hr>
+        </div>
+            <h5>Add Accessors</h5>
+                <div formArrayName="accessor" *ngFor="let access of accessor.controls; let i=index">
+                    <div  [formGroupName]="i">
+                        <div class="row">
+                                    <div class="form-group col-md-4 offset-2">
+                                        <input class="form-control" type="text" id="{{ 'accessId' + i }}" placeholder="Accessor name" formControlName="accessorname"
+                                        [ngClass]="{'is-invalid':(access.get('accessorname').touched || access.get('accessorname').dirty) && !access.get('accessorname').valid}">
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="access.get('accessorname').errors?.required">
+                                              Please enter the candidate's Accessor Name
+                                            </span>
+                                          </span>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <input class="form-control" type="email" placeholder="Email..." formControlName="accessoremail"
+                                        [ngClass]="{'is-invalid':(access.get('accessoremail').touched || access.get('accessoremail').dirty) && !access.get('accessoremail').valid}">
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="access.get('accessoremail').errors?.required">
+                                              Please enter the Accessor's email
+                                            </span>
+                                          </span>
+                                    </div>
+                        </div>
+                        <div class="row">
+                                <div class="form-group col-md-4 offset-2">
+                                        <input class="form-control"  type="text" placeholder="University" formControlName="university"
+                                        [ngClass]="{'is-invalid':(access.get('university').touched || access.get('university').dirty) && !access.get('university').valid}">
+                                        <span class="invalid-feedback">
+                                            <span *ngIf="access.get('university').errors?.required">
+                                              Please enter the Accessor's University
+                                            </span>
+                                          </span>
+                                </div>
+                        </div>
+                        <div class="col-md-4 offset-2">
+                                    <div class="form-group">
+                                        <input type="radio"  class="form-check-input" value="invitationsent" formControlName="status" >Invitation sent
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="radio" class="form-check-input" value="applicationsent" formControlName="status" >Application receieved
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="radio" class="form-check-input" value="papersent" formControlName="status" >Paper sent
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="radio" class="form-check-input" value="paperrecieved"  formControlName="status" >Paper received
+                                    </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row mb-5">
+                        <div class="col-md-4 offset-2">
+                                <button [hidden]="accessor.length >= 3" type="button" class="btn btn-primary" (click)="addAccessors()">Add Another Accessor </button>
+                        </div>
+                </div>
+
+
+        <div class="form-group row">
+            <div class="col-md-4 offset-2">
+                    <button id="but2" type="button" (click)="back()" class="btn btn-md ">Cancel Registration</button>
+            </div>
+           <div class="col-md-4">
+                <button id="but" type="submit" class="btn btn-md" [disabled]="!AddCandidate.valid">Save Candidate</button>
+           </div>
+
+        </div>
+
+    </form>
+</div>

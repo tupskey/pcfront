@@ -1,0 +1,33 @@
+
+<div class="container=fluid">
+  <h1 style="text-align: center;">
+    Edit Candidate
+</h1>
+ <h3>{{candidate.surname}}</h3>
+  <h5>{{candidate.other}}</h5>
+  <h6>{{candidate.fac}}</h6>
+  <h6>{{candidate.lev}}</h6>
+  <h6>{{candidate.dep}}</h6>
+
+<form  (ngSubmit)="updateForm()" [formGroup]="EditCan" class="form-group col-md-2" novalidate >
+
+        <div formArrayName="accessor"  >
+            <div *ngFor=" let access of accessor.controls; let i = index" >
+              <div class="">
+                <div [formGroupName]="i">
+                  <input type="text"  formControlName="accessorname" /><br><br>
+                  <input type="text" formControlName="accessoremail" /><br><br>
+                  <input type="text" formControlName="university" /><br><br>
+                  <input type="radio" formControlName="status" value="invitationsent" />Invitation Sent<br><br>
+                  <input type="radio" formControlName="status" value="applicationsent" />Application Recieved<br><br>
+                  <input type="radio" formControlName="status" value="papersent"  />Paper Sent<br><br>
+                  <input type="radio" formControlName="status" value="paperrecieved" />Paper Recieved<br><br>
+                </div>
+              </div>
+
+            </div>
+        </div>
+     <button  class="btn btn-danger" type="submit">Update</button>
+</form>
+</div>
+
